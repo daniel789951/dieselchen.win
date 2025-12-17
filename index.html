@@ -22,7 +22,7 @@
             position: relative;
         }
 
-        img {
+        #main-image {
             width: 100vw;
             height: 100vh;
             object-fit: contain;
@@ -207,7 +207,7 @@
     </style>
 </head>
 <body>
-    <img src="./gohome.webp" alt="可以回家啦">
+    <img id="main-image" src="./疲憊上班族.gif" alt="狀態圖片">
 
     <!-- 倒數計時器 -->
     <div id="countdown">
@@ -273,6 +273,9 @@
             { id: 'timer-finance', name: '金控', startHour: 9, startMinute: 0, endHour: 18, endMinute: 0 }
         ];
 
+        // 狀態追蹤變數：追蹤當前圖片狀態，避免重複載入 GIF
+        let currentImageState = null; // 'working' 或 'offwork'
+
         // 更新單個計時器
         function updateTimer(shift) {
             const now = new Date();
@@ -315,14 +318,27 @@
                     String(seconds).padStart(2, '0');
                 timerElement.classList.remove('finished');
 
+                // 檢查是否剛好到達下班時間（在最後 1 秒內）
+                if (diff <= 1000 && diff > 0) {
+                    // 標記這個班次的慶祝動畫尚未觸發
+                    if (!window.celebrationTriggered) {
+                        window.celebrationTriggered = {};
+                    }
+                    window.celebrationTriggered[shift.id] = false;
+                }
+
             } else {
                 // 已經下班了，顯示「回家」
                 timerElement.textContent = '回家';
                 timerElement.classList.add('finished');
 
-                // 觸發慶祝動畫（只觸發一次）
+                // 只在剛下班的那一刻觸發慶祝動畫（每個班次只觸發一次）
                 if (!window.celebrationTriggered) {
-                    window.celebrationTriggered = true;
+                    window.celebrationTriggered = {};
+                }
+
+                if (window.celebrationTriggered[shift.id] === false) {
+                    window.celebrationTriggered[shift.id] = true;
                     triggerCelebration();
                 }
             }
@@ -331,6 +347,44 @@
         // 更新所有倒數計時器
         function updateCountdown() {
             shifts.forEach(shift => updateTimer(shift));
+            updateMainImage();
+        }
+
+        // 更新主圖片（根據上下班時間）
+        function updateMainImage() {
+            const now = new Date();
+            const mainImage = document.getElementById('main-image');
+
+            // 檢查是否有任何班次正在上班
+            let anyoneWorking = false;
+
+            for (const shift of shifts) {
+                const startTime = new Date();
+                startTime.setHours(shift.startHour, shift.startMinute, 0, 0);
+
+                const endTime = new Date();
+                endTime.setHours(shift.endHour, shift.endMinute, 0, 0);
+
+                // 如果當前時間在任一班次的上班時間內
+                if (now >= startTime && now < endTime) {
+                    anyoneWorking = true;
+                    break;
+                }
+            }
+
+            // 計算新的狀態
+            const newState = anyoneWorking ? 'working' : 'offwork';
+
+            // 只在狀態改變時才更新圖片，避免重複載入 GIF
+            if (currentImageState !== newState) {
+                currentImageState = newState;
+
+                if (newState === 'working') {
+                    mainImage.src = './疲憊上班族.gif';
+                } else {
+                    mainImage.src = './大家可以回家拉.gif';
+                }
+            }
         }
 
         // 創建五彩碎紙
