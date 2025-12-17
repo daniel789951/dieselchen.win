@@ -228,11 +228,6 @@
     <div id="countdown">
         <div id="timers-container">
             <div class="timer-box">
-                <h3>早班</h3>
-                <div class="shift-time">16:40</div>
-                <div class="timer" id="timer-early">00:00:00</div>
-            </div>
-            <div class="timer-box">
                 <h3>正常班</h3>
                 <div class="shift-time">17:30</div>
                 <div class="timer" id="timer-normal">00:00:00</div>
@@ -296,7 +291,6 @@
 
         // 定義班次時間（包含上下班時間）
         const shifts = [
-            { id: 'timer-early', name: '早班', startHour: 8, startMinute: 0, endHour: 16, endMinute: 40 },
             { id: 'timer-normal', name: '正常班', startHour: 8, startMinute: 50, endHour: 17, endMinute: 30 },
             { id: 'timer-late', name: '晚班', startHour: 9, startMinute: 50, endHour: 18, endMinute: 30 },
             { id: 'timer-finance', name: '金控', startHour: 9, startMinute: 0, endHour: 18, endMinute: 0 }
