@@ -261,12 +261,30 @@ export default function App() {
     );
   };
 
+  // State for closing popups manually in this session
+  const [restingClosed, setRestingClosed] = useState(false);
+  const [offWorkClosed, setOffWorkClosed] = useState(false);
+
+  useEffect(() => {
+    if (!isRestingTime) setRestingClosed(false);
+  }, [isRestingTime]);
+
+  useEffect(() => {
+    if (!isOffWorkPopupTime) setOffWorkClosed(false);
+  }, [isOffWorkPopupTime]);
+
   return (
     <>
       <img id="main-image" src={isWorking ? tiredGif : homeGif} alt="狀態圖片" />
 
-      <RestingPopup isOpen={isRestingTime} />
-      <OffWorkPopup isOpen={isOffWorkPopupTime} />
+      <RestingPopup 
+        isOpen={isRestingTime && !restingClosed} 
+        onClose={() => setRestingClosed(true)} 
+      />
+      <OffWorkPopup 
+        isOpen={isOffWorkPopupTime && !offWorkClosed} 
+        onClose={() => setOffWorkClosed(true)} 
+      />
 
       <div id="countdown">
         <div id="timers-container">
