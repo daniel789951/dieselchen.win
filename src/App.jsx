@@ -5,6 +5,8 @@ import Popup from './components/Popup';
 import BlogLink from './components/BlogLink';
 import MainImage from './components/MainImage';
 import './App.css'; // Ensure CSS is imported
+import DailyMotivation from './components/DailyMotivation';
+import { workQuotes, offworkQuotes } from './data/quotes';
 
 // Helper for sound
 const playDingSound = () => {
@@ -70,20 +72,6 @@ const triggerCelebration = () => {
 
     setTimeout(() => clearInterval(interval), 5000);
 };
-
-// Quotes
-const offworkQuotes = [
-    '終於可以回家了！', '回家吃飯囉～', '下班萬歲！', '自由的感覺真好！',
-    '今天辛苦了！', '回家的路上最美麗', '終於解放了！', '家，我回來了！',
-    '打卡下班，開心回家', '又是充實的一天', '期待已久的下班時刻', '準備享受自己的時間了'
-];
-
-const workQuotes = [
-    '明明昨天還好好的啊!?', '今天又是充滿挑戰的一天...', '咖啡...需要更多咖啡...',
-    '為什麼周一這麼快就到了', '深呼吸，你可以的！', '距離下班還有好久...',
-    '又是努力搬磚的一天', '加油！撐過今天就好', '會議怎麼這麼多啊',
-    '想念被窩的溫暖', '這個 bug 怎麼還在...', '堅持住，等等就下班了'
-];
 
 // Shifts
 const shifts = [
@@ -231,6 +219,7 @@ function App() {
             </div>
 
             <BlogLink />
+            <DailyMotivation />
             <Quote text={quote} isWorking={isWorking} />
 
             <Popup 
