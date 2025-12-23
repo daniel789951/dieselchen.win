@@ -6,6 +6,7 @@ import BlogLink from './components/BlogLink';
 import MainImage from './components/MainImage';
 import './App.css'; // Ensure CSS is imported
 import DailyMotivation from './components/DailyMotivation';
+import MiniGamesWidget from './components/MiniGames/MiniGamesWidget';
 import { workQuotes, offworkQuotes } from './data/quotes';
 
 // Helper for sound
@@ -249,6 +250,8 @@ function App() {
                 buttonColor="#4ecdc4"
                 buttonText="下班！"
             />
+            
+            <MiniGamesWidget />
         </>
     );
 }
