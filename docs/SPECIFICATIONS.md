@@ -23,12 +23,29 @@
 
 ### 主要功能模組
 
-1. **Main Visual**: 隨機展示 Diesel 圖片與名言。
-2. **Daily Motivation**: 每日一句幹話/激勵語錄。
-3. **Time-Based Events**:
-    - **Resting Popup**: 特定時間跳出的休息提醒。
-    - **Off Work Popup**: 下班時間的慶祝彈窗（含音效）。
-4. **Mini Games Widget** (New): 左下角懸浮小遊戲中心。
+1. **Main Visual**: 根據時間狀態展示不同 GIF 圖片。
+    - 上班時間：疲憊上班族.gif
+    - 午休時間 (11:50-13:30)：吃午餐.gif
+    - 下班時間：大家可以回家拉.gif
+2. **Timer System**: 多班次倒數計時。
+    - 正常班 (8:50-17:30)
+    - 金控班 (9:00-18:00)
+3. **Quote System**: 根據狀態顯示語錄。
+    - 上班語錄（午休時間隱藏）
+    - 下班語錄
+4. **Daily Motivation**: 每日一句幹話/激勵語錄（右下角）。
+5. **Time-Based Events**:
+    - **Lunch Time Display** (11:50-13:30): 午休時間顯示吃午餐 GIF，語錄隱藏。
+    - **Resting Popup** (12:00-13:30): 午休提醒彈窗。
+    - **Off Work Popup** (17:30-次日07:00): 下班時間的慶祝彈窗（含音效與動畫）。
+    - **Clock Out Notification** (17:30): 桌面推播提醒打卡下班。
+6. **Mini Games Widget**: 左下角懸浮小遊戲中心。
+    - 輪盤遊戲
+    - 老虎機
+    - 飛鏢遊戲
+7. **Blog Links**: 技術顧問連結（右上角）。
+    - 安顧問：https://blog.giveanornot.com/
+    - 達顧問：https://www.starnight.one/
 
 ## 資料結構
 

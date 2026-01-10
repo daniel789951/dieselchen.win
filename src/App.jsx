@@ -77,7 +77,6 @@ const triggerCelebration = () => {
 // Shifts
 const shifts = [
     { id: 'timer-normal', name: '正常班', startHour: 8, startMinute: 50, endHour: 17, endMinute: 30 },
-    { id: 'timer-late', name: '晚班', startHour: 9, startMinute: 50, endHour: 18, endMinute: 30 },
     { id: 'timer-finance', name: '金控', startHour: 9, startMinute: 0, endHour: 18, endMinute: 0 }
 ];
 
@@ -88,6 +87,7 @@ function App() {
     const [showRestingPopup, setShowRestingPopup] = useState(false);
     const [showOffWorkPopup, setShowOffWorkPopup] = useState(false);
     const [notificationPermission, setNotificationPermission] = useState('default');
+    const [isRestingTime, setIsRestingTime] = useState(false);
 
     // Refs to track state without triggering re-renders for logic checks
     const restingClosedRef = useRef(false);
@@ -111,7 +111,7 @@ function App() {
     const sendClockOutNotification = () => {
         if ('Notification' in window && Notification.permission === 'granted') {
             const notification = new Notification('⏰ 打卡提醒', {
-                body: '現在是下午 5:00，記得打卡下班喔！',
+                body: '現在是下午 5:30，記得打卡下班喔！',
                 icon: '/疲憊上班族.gif',
                 tag: 'clock-out-reminder',
                 requireInteraction: true
@@ -188,8 +188,8 @@ function App() {
             }
 
 
-            // 3. Check Clock Out Notification (17:00)
-            const clockOutTime = 17 * 60; // 17:00
+            // 3. Check Clock Out Notification (17:30)
+            const clockOutTime = 17 * 60 + 30; // 17:30
             if (totalMinutes === clockOutTime && !clockOutNotificationSentRef.current) {
                 sendClockOutNotification();
                 clockOutNotificationSentRef.current = true;
@@ -202,9 +202,11 @@ function App() {
             // Resting: 12:00 - 13:30
             const startRest = 12 * 60;
             const endRest = 13 * 60 + 30;
-            const isRestingTime = totalMinutes >= startRest && totalMinutes < endRest;
+            const isResting = totalMinutes >= startRest && totalMinutes < endRest;
 
-            if (isRestingTime) {
+            setIsRestingTime(isResting);
+
+            if (isResting) {
                 if (!restingClosedRef.current) setShowRestingPopup(true);
             } else {
                 restingClosedRef.current = false;
@@ -261,7 +263,7 @@ function App() {
 
             <BlogLink />
             <DailyMotivation />
-            <Quote text={quote} isWorking={isWorking} />
+            <Quote text={quote} isWorking={isWorking} isRestingTime={isRestingTime} />
 
             <Popup 
                 isOpen={showRestingPopup} 

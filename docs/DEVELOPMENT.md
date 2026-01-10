@@ -20,19 +20,22 @@
 dieselchen.win/
 ├── public/                 # 公開靜態資源
 │   ├── 疲憊上班族.gif       # 上班狀態圖片
-│   └── 大家可以回家拉.gif    # 下班狀態圖片
+│   ├── 大家可以回家拉.gif    # 下班狀態圖片
+│   └── 吃午餐.gif          # 午休時間圖片
 ├── src/
 │   ├── components/         # React 元件集中地
-│   │   ├── BlogLink.jsx    # 部落格連結區塊
+│   │   ├── BlogLink.jsx    # 技術顧問連結區塊
 │   │   ├── DailyMotivation.jsx # 每日躺平激勵小工具
-│   │   ├── MainImage.jsx   # 中央狀態圖片顯示
+│   │   ├── MainImage.jsx   # 中央狀態圖片顯示 (支援午休時間切換)
 │   │   ├── Popup.jsx       # 通用彈出視窗元件 (休息/下班提醒用)
-│   │   ├── Quote.jsx       # 中央隨機語錄元件
-│   │   └── TimerBox.jsx    # 單個倒數計時器元件
+│   │   ├── Quote.jsx       # 中央隨機語錄元件 (午休時隱藏)
+│   │   ├── TimerBox.jsx    # 單個倒數計時器元件
+│   │   └── MiniGames/      # 小遊戲模組
 │   ├── data/
 │   │   └── quotes.js       # 全站靜態文字資料 (語錄庫)
-│   ├── App.jsx             # 核心商業邏輯 (時間計算、狀態判定)
+│   ├── App.jsx             # 核心商業邏輯 (時間計算、狀態判定、通知功能)
 │   ├── App.css             # 應用程式樣式
+│   ├── audioUtils.js       # 音效工具函式
 │   └── main.jsx            # 程式進入點 (Entry Point)
 ├── docs/                   # 專案文件
 ├── vite.config.js          # Vite 設定檔

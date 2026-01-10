@@ -11,7 +11,7 @@ const BlogLink = () => {
           rel="noopener noreferrer"
           style={{ display: 'block', width: '100%' }}
         >
-          楊顧問
+          安顧問
         </a>
         <a
           href="https://www.starnight.one/"
