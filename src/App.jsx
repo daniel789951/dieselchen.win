@@ -76,8 +76,7 @@ const triggerCelebration = () => {
 
 // Shifts
 const shifts = [
-    { id: 'timer-normal', name: '正常班', startHour: 8, startMinute: 50, endHour: 17, endMinute: 30 },
-    { id: 'timer-finance', name: '金控', startHour: 9, startMinute: 0, endHour: 18, endMinute: 0 }
+    { id: 'timer-normal', name: '正常班', startHour: 8, startMinute: 50, endHour: 17, endMinute: 30 }
 ];
 
 function App() {
