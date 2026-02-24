@@ -25,6 +25,19 @@ body {
   animation: fadeInZoom 1.5s ease-out forwards;
 }
 
+.special-gif-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+  z-index: 10;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
 /* 倒數計時器容器 */
 #countdown {
   position: fixed;

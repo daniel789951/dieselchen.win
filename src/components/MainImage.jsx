@@ -66,11 +66,12 @@ const MainImage = ({ isWorking }) => {
   }
 
   return (
-    <img
-      id="main-image"
-      src={specialGifSrc ?? src}
-      alt="狀態圖片"
-    />
+    <>
+      <img id="main-image" src={src} alt="狀態圖片" />
+      {specialGifSrc && (
+        <img className="special-gif-overlay" src={specialGifSrc} alt="塊陶啊" />
+      )}
+    </>
   );
 };
 
