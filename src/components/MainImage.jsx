@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 
-const IDLE_TIMEOUT_MS = 2000 //3 * 60 * 1000;  // 3 分鐘
-const SPECIAL_GIF_DURATION_MS = 6500;   // 特殊 GIF 播放時長（ms），依實際 GIF 長度調整
-const SPECIAL_GIF_2_PROB = 0.7;        // 1% 機率播放第二個 GIF
+const IDLE_TIMEOUT_MS = 3 * 60 * 1000;  // 3 分鐘
+const SPECIAL_GIF_DURATION_MS = 7000;   // 特殊 GIF 播放時長（ms），依實際 GIF 長度調整
+const SPECIAL_GIF_2_PROB = 0.2;        // 20% 機率播放第二個 GIF
 
 const MainImage = ({ isWorking }) => {
   const [isLunchTime, setIsLunchTime] = useState(false);
