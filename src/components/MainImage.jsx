@@ -92,6 +92,9 @@ const MainImage = ({ isWorking }) => {
 
       {specialGifSrc && (
         <div className="alert-gif-wrapper">
+          <div className="alert-marquee-text" aria-hidden="true">
+            {'塊陶啊!!! '.repeat(10)}
+          </div>
           <img className="special-gif-overlay" src={specialGifSrc} alt="塊陶啊" />
         </div>
       )}
